@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -17,9 +16,13 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'username',
+        'username',          // for normal registration
+        'name',              // for social login
         'email',
         'password',
+        'provider',          // 'google', 'twitter', etc.
+        'provider_id',       // unique ID from provider
+        'email_verified_at', // social accounts are trusted
     ];
 
     /**
@@ -33,7 +36,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * The attributes that should be cast.
      *
      * @return array<string, string>
      */
